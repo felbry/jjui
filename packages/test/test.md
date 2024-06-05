@@ -8,9 +8,7 @@ import manifest from './custom-elements.json'
 
 ## 名称为 John
 
-<ClientOnly>
-  <JohnName />
-</ClientOnly>
+<JohnName />
 
 ::: details 展开代码
 <<< @/packages/test/cases/john-name.vue
@@ -18,9 +16,7 @@ import manifest from './custom-elements.json'
 
 ## 名称为 Lucy
 
-<ClientOnly>
-  <LucyName />
-</ClientOnly>
+<LucyName />
 
 ::: details 展开代码
 <<< @/packages/test/cases/lucy-name.vue
@@ -28,6 +24,4 @@ import manifest from './custom-elements.json'
 
 ## API
 
-<ClientOnly>
-  <api-docs :manifest="manifest"></api-docs>
-</ClientOnly>
+<api-docs :manifest="manifest"></api-docs>

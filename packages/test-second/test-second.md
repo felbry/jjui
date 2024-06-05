@@ -8,6 +8,4 @@ import manifest from './custom-elements.json'
 
 ## API
 
-<ClientOnly>
-  <api-docs :manifest="manifest"></api-docs>
-</ClientOnly>
+<api-docs :manifest="manifest"></api-docs>
