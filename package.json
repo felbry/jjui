@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build --base /docs/ --outDir ./docs",
+    "docs:build": "vitepress build --base /lazy-chart/ --outDir ./docs",
     "docs:preview": "vitepress preview",
     "build": "vite build"
   },
