@@ -6,10 +6,13 @@ export default defineConfig({
   //   lib: {
   //     entry: [
   //       resolve(__dirname, 'packages/entry.js'),
-  //       resolve(__dirname, 'packages/test/test.ce.js'),
+  //       resolve(__dirname, 'packages/bar/bar.ce.js'),
   //       resolve(__dirname, 'packages/test-second/test-second.ce.js'),
   //     ],
   //     formats: ['es'], // 由于web components ui组件，不考虑commonjs的场景
+  //   },
+  //   rollupOptions: {
+  //     external: ['echarts'],
   //   },
   // },
 })
