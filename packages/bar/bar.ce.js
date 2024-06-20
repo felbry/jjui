@@ -11,37 +11,48 @@ export class LazyBar extends BaseChart {
   @property({ attribute: false })
   accessor isDefaultAxisType = true
 
-  _optionScaffold = {
-    // 柱状图的图例为正方形
-    legend: {
-      icon: 'rect',
-      itemWidth: 10,
-      itemHeight: 10,
-    },
-    tooltip: {}, // 配置了才有tooltip
-    // https://echarts.apache.org/zh/option.html#xAxis.type
-    xAxis: { type: 'category' }, // 指定xAxis展示类目（分类），类目数据从dataset.source中取
-    // 声明一个 Y 轴，数值轴。
-    yAxis: {},
+  /**
+   * 区域缩放相关配置。当dataZoom为true时，启用区域缩放功能。
+   * @type {DataZoom|null}
+   */
+  @property({ attribute: false })
+  accessor dataZoom = null
+
+  get _optionScaffold() {
+    return {
+      legend: {
+        icon: 'rect',
+        itemWidth: 10,
+        itemHeight: 10,
+      },
+      // 配置了才有tooltip
+      tooltip: {},
+      // 如果isDefaultAxisType为false，设置x轴和y轴的type
+      ...(this.isDefaultAxisType
+        ? { xAxis: { type: 'category' }, yAxis: {} }
+        : { xAxis: { type: 'value' }, yAxis: { type: 'category' } }),
+      // 根据source数据有几个serial生成对应的几个bar
+      series: this.source[0] ? this.source[0].slice(1).map(() => ({ type: 'bar' })) : [],
+      ...(this.dataZoom
+        ? {
+            dataZoom: [
+              {
+                type: 'slider',
+                brushSelect: false,
+                ...this.dataZoom,
+              },
+            ],
+          }
+        : {}),
+    }
   }
 
   shouldUpdate(changedProperties) {
-    if (changedProperties.has('source')) {
-      // 根据source数据有几个serial生成对应的几个bar
-      this._optionScaffold.series = this.source[0]
-        ? this.source[0].slice(1).map(() => ({ type: 'bar' }))
-        : []
-      // 如果isDefaultAxisType为false，设置x轴和y轴的type
-      if (!this.isDefaultAxisType) {
-        this._optionScaffold.xAxis.type = 'value'
-        this._optionScaffold.yAxis.type = 'category'
-      }
+    if (changedProperties.has('source') && this.hasUpdated) {
       // 首次还没mounted，走firstUpdated的逻辑
       // 后续source变更，直接手动调用更新图表，就不需要走接下来的update周期了
-      if (this.hasUpdated) {
-        this._renderChart()
-        return false
-      }
+      this._renderChart()
+      return false
     }
     return true
   }
