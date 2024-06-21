@@ -43,5 +43,35 @@ export default {
         },
       },
     },
+    // 图例样式
+    legend: {
+      // 图例文本颜色
+      textStyle: {
+        color: '#595959',
+      },
+    },
+    dataZoom: {
+      borderColor: 'transparent', // 最外围的border不显示
+      backgroundColor: 'rgba(65, 97, 128, .05)', // 整个区域的底色
+      dataBackground: {
+        // 有个趋势图，
+        lineStyle: {
+          color: '#BABDBE',
+        },
+      },
+      selectedDataBackground: {
+        lineStyle: {
+          color: '#BABDBE',
+        },
+      },
+      fillerColor: 'rgba(91, 143, 249, .15)',
+      height: 18,
+      handleSize: 30,
+    },
+    line: {
+      smooth: true, // 平滑曲线
+      symbol: 'circle', // 每个节点的图形，默认是空心圆
+      showSymbol: false, // 是否显示 symbol, 如果 false 则只有在 tooltip hover 的时候显示
+    },
   },
 }
