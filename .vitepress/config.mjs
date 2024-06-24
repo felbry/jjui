@@ -15,6 +15,7 @@ export default defineConfig({
         items: [
           { text: 'Bar 柱状图', link: '/bar' },
           { text: 'Line 折线图', link: '/line' },
+          { text: 'Pie 饼图', link: '/pie' },
         ],
       },
     ],

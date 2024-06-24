@@ -20,20 +20,6 @@ const BaseMixin = (superClass) =>
     @property({ attribute: false })
     accessor source = []
 
-    /**
-     * 图表宽度
-     * @type {String}
-     */
-    @property({ attribute: false })
-    accessor width = '100%'
-
-    /**
-     * 图表高度
-     * @type {String}
-     */
-    @property({ attribute: false })
-    accessor height = '100%'
-
     @query('#main')
     accessor _mainRef
 
@@ -50,18 +36,10 @@ const BaseMixin = (superClass) =>
     `
 
     render() {
-      return html`${this.width !== '100%' || this.height !== '100%'
-          ? html`<style>
-              :host {
-                width: ${this.width} !important;
-                height: ${this.height} !important;
-              }
-            </style>`
-          : ''}
-        <div
-          id="main"
-          style="width: 100%; height: 100%"
-        ></div>`
+      return html`<div
+        id="main"
+        style="width: 100%; height: 100%"
+      ></div>`
     }
 
     _renderChart() {

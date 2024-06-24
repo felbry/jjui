@@ -1,7 +1,6 @@
 <template>
   <lc-line
-    width="300px"
-    height="300px"
+    style="width: 300px; height: 300px"
     :source="source"
   />
 </template>

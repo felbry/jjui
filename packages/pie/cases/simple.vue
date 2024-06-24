@@ -1,5 +1,5 @@
 <template>
-  <lc-bar
+  <lc-pie
     style="width: 300px; height: 300px"
     :source="source"
   />
@@ -9,10 +9,9 @@ export default {
   data() {
     return {
       source: [
-        ['', '水费'],
-        ['1月', 43.3],
-        ['2月', 83.1],
-        ['4月', 86.4],
+        { name: '分类一', value: 1048 },
+        { name: '分类二', value: 735 },
+        { name: '分类三', value: 580 },
       ],
     }
   },

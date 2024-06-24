@@ -68,6 +68,9 @@ export default {
       height: 18,
       handleSize: 30,
     },
+    bar: {
+      barGap: '5%', // 相同类目多个柱状图之间的间隙   barCategoryGap是指1月、2月这种之间的间距，如果太小所有柱子都挤在一块了
+    },
     line: {
       smooth: true, // 平滑曲线
       symbol: 'circle', // 每个节点的图形，默认是空心圆

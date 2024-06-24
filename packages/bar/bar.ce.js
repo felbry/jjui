@@ -1,7 +1,5 @@
 import { BaseChart } from '../../mixins/base'
-import { customElement } from 'lit/decorators.js'
-import { property } from 'lit/decorators.js'
-
+import { customElement, property } from 'lit/decorators.js'
 @customElement('lc-bar')
 export class LazyBar extends BaseChart {
   /**
@@ -25,8 +23,12 @@ export class LazyBar extends BaseChart {
         itemWidth: 10,
         itemHeight: 10,
       },
-      // 配置了才有tooltip
-      tooltip: {},
+      tooltip: {
+        trigger: 'axis', // 默认是item，当相同类目多个柱状图时，不能整体展示，所以以axis触发
+        axisPointer: {
+          type: 'shadow', // 折线图更适合line形式，柱状图更适合shadow
+        },
+      },
       // 如果isDefaultAxisType为false，设置x轴和y轴的type
       ...(this.isDefaultAxisType
         ? { xAxis: { type: 'category' }, yAxis: {} }

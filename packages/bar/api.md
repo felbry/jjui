@@ -7,8 +7,6 @@
 | Property            | Type             | Default  | Description                                      |
 |---------------------|------------------|----------|--------------------------------------------------|
 | `dataZoom`          | `DataZoom\|null` | null     | 区域缩放相关配置。当dataZoom为true时，启用区域缩放功能。               |
-| `height`            | `String`         | "100%"   | 图表高度                                             |
 | `isDefaultAxisType` | `Boolean`        | true     | 是否默认x轴和y轴的类型（默认x轴type为category，y轴type为value）。当设置该值为false时柱状图将横向展示。 |
 | `source`            | `Array`          | []       | 图表数据                                             |
 | `theme`             | `Object\|String` | "common" | 主题                                               |
-| `width`             | `String`         | "100%"   | 图表宽度                                             |

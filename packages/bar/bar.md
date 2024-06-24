@@ -90,9 +90,9 @@ const data = [
 
 ```ts
 interface DataZoom {
-  start: Number
-  end: Number
-  zoomLock: Boolean
+  start?: Number
+  end?: Number
+  zoomLock?: Boolean
 }
 ```
 
