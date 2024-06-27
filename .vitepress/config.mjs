@@ -12,9 +12,9 @@ export default defineConfig({
       {
         text: '前置工作',
         items: [
-          { text: '安装和引入', link: '/start' },
-          { text: '环境差异', link: '/env-diff' },
           { text: 'Why？How？', link: '/why' },
+          { text: '安装和引入', link: '/start' },
+          { text: '开发注意事项', link: '/dev-announcement' },
         ],
       },
       { text: '主题预览', link: '/themes/' },
