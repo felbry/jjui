@@ -1,2 +1,1 @@
-import './bar/bar.ce.js'
-import './test-second/test-second.ce.js'
+import.meta.glob('./**/*.ce.js', { eager: true })

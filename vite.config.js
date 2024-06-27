@@ -1,5 +1,6 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
+import babel from 'vite-plugin-babel'
 
 export default defineConfig({
   // build: {
@@ -7,7 +8,8 @@ export default defineConfig({
   //     entry: [
   //       resolve(__dirname, 'packages/entry.js'),
   //       resolve(__dirname, 'packages/bar/bar.ce.js'),
-  //       resolve(__dirname, 'packages/test-second/test-second.ce.js'),
+  //       resolve(__dirname, 'packages/line/line.ce.js'),
+  //       resolve(__dirname, 'packages/pie/pie.ce.js'),
   //     ],
   //     formats: ['es'], // 由于web components ui组件，不考虑commonjs的场景
   //   },
@@ -15,4 +17,8 @@ export default defineConfig({
   //     external: ['echarts'],
   //   },
   // },
+  // plugins: [
+  //   // Babel will try to pick up Babel config files (.babelrc or .babelrc.json)
+  //   babel(),
+  // ],
 })

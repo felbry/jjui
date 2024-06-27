@@ -7,7 +7,7 @@ import themeCommon from '../themes/common.js'
 const BaseMixin = (superClass) =>
   class extends superClass {
     /**
-     * 主题
+     * 主题 库内置了若干主题，通过传递对应的字符串选择不同主题；也可以传递Object自行定制主题（不推荐）
      * @type {Object|String}
      */
     @property({ attribute: false })
@@ -29,7 +29,7 @@ const BaseMixin = (superClass) =>
 
     static styles = css`
       :host {
-        display: inline-flex;
+        display: block;
         width: 100%;
         height: 100%;
       }
@@ -38,7 +38,7 @@ const BaseMixin = (superClass) =>
     render() {
       return html`<div
         id="main"
-        style="width: 100%; height: 100%"
+        style="height: 100%"
       ></div>`
     }
 
@@ -49,6 +49,16 @@ const BaseMixin = (superClass) =>
           source: this.source,
         },
       })
+    }
+
+    shouldUpdate(changedProperties) {
+      if (changedProperties.has('source') && this.hasUpdated) {
+        // 首次还没mounted，走firstUpdated的逻辑
+        // 后续source变更，直接手动调用更新图表，就不需要走接下来的update周期了
+        this._renderChart()
+        return false
+      }
+      return true
     }
 
     firstUpdated() {

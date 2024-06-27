@@ -25,12 +25,4 @@ export class LazyLine extends BaseChart {
         : [],
     }
   }
-
-  shouldUpdate(changedProperties) {
-    if (changedProperties.has('source') && this.hasUpdated) {
-      this._renderChart()
-      return false
-    }
-    return true
-  }
 }

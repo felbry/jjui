@@ -10,6 +10,13 @@ export class LazyPie extends BaseChart {
   @property({ attribute: false })
   accessor radius = [0, '75%']
 
+  /**
+   * echarts的graphic选项，通常用于在圆环图中心绘制文本
+   * @type {Object|Null}
+   */
+  @property({ attribute: false })
+  accessor graphic = null
+
   get _optionScaffold() {
     return {
       legend: {
@@ -27,14 +34,7 @@ export class LazyPie extends BaseChart {
           radius: this.radius,
         },
       ],
+      ...(this.graphic ? { graphic: this.graphic } : {}),
     }
-  }
-
-  shouldUpdate(changedProperties) {
-    if (changedProperties.has('source') && this.hasUpdated) {
-      this._renderChart()
-      return false
-    }
-    return true
   }
 }

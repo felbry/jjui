@@ -9,6 +9,14 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [{ text: 'Home', link: '/' }],
     sidebar: [
+      {
+        text: '前置工作',
+        items: [
+          { text: '安装和引入', link: '/start' },
+          { text: '环境差异', link: '/env-diff' },
+          { text: 'Why？How？', link: '/why' },
+        ],
+      },
       { text: '主题预览', link: '/themes/' },
       {
         text: '组件',
@@ -29,7 +37,7 @@ export default defineConfig({
   vue: {
     template: {
       compilerOptions: {
-        // 将所有前缀为 j- 的标签名都视为自定义元素
+        // 将所有前缀为 lc- 或 sl- 的标签名都视为自定义元素
         isCustomElement: (tag) => tag.startsWith('lc-') || tag.startsWith('sl-'),
       },
     },

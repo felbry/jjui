@@ -48,14 +48,4 @@ export class LazyBar extends BaseChart {
         : {}),
     }
   }
-
-  shouldUpdate(changedProperties) {
-    if (changedProperties.has('source') && this.hasUpdated) {
-      // 首次还没mounted，走firstUpdated的逻辑
-      // 后续source变更，直接手动调用更新图表，就不需要走接下来的update周期了
-      this._renderChart()
-      return false
-    }
-    return true
-  }
 }
