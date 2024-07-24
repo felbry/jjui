@@ -3,13 +3,13 @@
 layout: home
 
 hero:
-  name: 'lazy-chart'
-  text: 'A VitePress Site'
+  name: 'jjui'
+  text: '大一统UI库'
   tagline: My great project tagline
   actions:
     - theme: brand
-      text: 开始
-      link: /bar
+      text: Input
+      link: /input
 
 features:
   - title: Feature A

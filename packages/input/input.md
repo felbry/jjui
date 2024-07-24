@@ -2,18 +2,16 @@
 import Simple from './cases/simple.vue'
 </script>
 
-# Line 折线图
+# Input 输入框
 
 ## 示例
 
-### source 的基本使用
-
-有关`source`的数据结构，在柱状图中有解释，这里展示一个最简单的折线图
+### 基础
 
 <Simple />
 
 ::: details 展开代码
-<<< @/packages/line/cases/simple.vue
+<<< @/packages/input/cases/simple.vue
 :::
 
 ## 后续内容为自动生成

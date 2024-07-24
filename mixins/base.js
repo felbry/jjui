@@ -1,8 +1,5 @@
-import { html, css, unsafeCSS, LitElement } from 'lit'
-import { property, query } from 'lit/decorators.js'
-import { styleMap } from 'lit/directives/style-map.js'
-import * as echarts from 'echarts'
-import themeCommon from '../themes/common.js'
+import { html, css, LitElement } from 'lit'
+import { property } from 'lit/decorators.js'
 
 const BaseMixin = (superClass) =>
   class extends superClass {
@@ -13,20 +10,6 @@ const BaseMixin = (superClass) =>
     @property({ attribute: false })
     accessor theme = 'common'
 
-    /**
-     * 图表数据
-     * @type {Array}
-     */
-    @property({ attribute: false })
-    accessor source = []
-
-    @query('#main')
-    accessor _mainRef
-
-    _mainRefResizeObserver
-
-    _chartInstance = null
-
     static styles = css`
       :host {
         display: block;
@@ -34,50 +17,6 @@ const BaseMixin = (superClass) =>
         height: 100%;
       }
     `
-
-    render() {
-      return html`<div
-        id="main"
-        style="height: 100%"
-      ></div>`
-    }
-
-    _renderChart() {
-      this._chartInstance.setOption({
-        ...this._optionScaffold,
-        dataset: {
-          source: this.source,
-        },
-      })
-    }
-
-    shouldUpdate(changedProperties) {
-      if (changedProperties.has('source') && this.hasUpdated) {
-        // 首次还没mounted，走firstUpdated的逻辑
-        // 后续source变更，直接手动调用更新图表，就不需要走接下来的update周期了
-        this._renderChart()
-        return false
-      }
-      return true
-    }
-
-    firstUpdated() {
-      this._chartInstance = echarts.init(
-        this._mainRef,
-        this.theme === 'common' ? themeCommon.value : this.theme
-      )
-      this._renderChart()
-      this._mainRefResizeObserver = new ResizeObserver(() => {
-        this._chartInstance.resize()
-      })
-      this._mainRefResizeObserver.observe(this._mainRef)
-    }
-
-    disconnectedCallback() {
-      super.disconnectedCallback()
-      this._chartInstance.dispose()
-      this._mainRefResizeObserver.disconnect()
-    }
   }
 
-export const BaseChart = BaseMixin(LitElement)
+export const Base = BaseMixin(LitElement)
