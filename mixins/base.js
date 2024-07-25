@@ -12,9 +12,7 @@ const BaseMixin = (superClass) =>
 
     static styles = css`
       :host {
-        display: block;
-        width: 100%;
-        height: 100%;
+        display: block; /* 自定义元素默认是inline，统一成block */
       }
     `
   }

@@ -11,8 +11,11 @@ export default defineConfig({
     nav: [{ text: '主页', link: '/' }],
     sidebar: [
       {
-        text: '组件',
-        items: [{ text: 'Input 输入框', link: '/input' }],
+        text: '表单组件',
+        items: [
+          { text: '设计思路', link: '/form-design' },
+          { text: 'Input 输入框', link: '/input' },
+        ],
       },
     ],
     outline: {
@@ -34,6 +37,16 @@ export default defineConfig({
     plugins: [
       // Babel will try to pick up Babel config files (.babelrc or .babelrc.json)
       babel(),
+      // https://tailwindcss.com/docs/font-size
+      // text-xs 12 16
+      // text-sm 14 20
+      // text-base 16 24
+      // text-lg 18 28
+      // text-xl 20 28
+      // https://tailwindcss.com/docs/font-weight
+      // font-normal	 400;
+      // font-medium	 500;
+      // font-semibold	 600;
       UnoCSS({ mode: 'shadow-dom', theme: { colors: { primary: 'var(--jjui-color-primary)' } } }),
     ],
   },
