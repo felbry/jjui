@@ -155,25 +155,30 @@ export async function themeFromImage(
   return themeFromSourceColor(source, customColors, variant, contrastLevel)
 }
 
-export function applyTheme(theme, options) {
-  const target = options?.target || document.body
+export function applyTheme(theme, argbSource, options) {
   const isDark = options?.dark ?? false
   const scheme = isDark ? theme.schemes.dark : theme.schemes.light
-  setSchemeProperties(target, scheme)
-}
-function setSchemeProperties(target, scheme, suffix = '') {
-  for (const [key, value] of Object.entries(scheme.toJSON())) {
-    const token = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-    const color = m3utils.hexFromArgb(value)
-    target.style.setProperty(`--jjui-color-${token}${suffix}`, color)
-  }
+  const schemaStyle = document.createElement('style')
+  schemaStyle.id = `jjui-schema-${argbSource}`
+  schemaStyle.textContent = `:root {
+    ${Object.entries(scheme.toJSON())
+      .map(([key, value]) => {
+        const token = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+        return `--jjui-color-${token}: ${m3utils.redFromArgb(value)}, ${m3utils.greenFromArgb(
+          value
+        )}, ${m3utils.blueFromArgb(value)};`
+      })
+      .join('\n')}
+    }`
+  document.head.appendChild(schemaStyle)
 }
 
 export function setSchema(hex) {
-  const theme = themeFromSourceColor(m3utils.argbFromHex(hex), [
+  const argbSource = m3utils.argbFromHex(hex)
+  const theme = themeFromSourceColor(argbSource, [
     {
       name: 'success',
-      value: m3utils.argbFromHex('#ff0000'),
+      value: m3utils.argbFromHex('#52c41a'),
       blend: true,
     },
   ])
@@ -187,5 +192,5 @@ export function setSchema(hex) {
     })
   })
   // console.log(JSON.stringify(theme, null, 2))
-  applyTheme(theme)
+  applyTheme(theme, argbSource)
 }

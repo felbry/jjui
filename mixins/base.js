@@ -1,20 +1,45 @@
-import { html, css, LitElement } from 'lit'
-import { property } from 'lit/decorators.js'
+import { html, css, LitElement, adoptStyles, unsafeCSS } from 'lit'
+import { property, state } from 'lit/decorators.js'
 
 const BaseMixin = (superClass) =>
   class extends superClass {
     /**
-     * 主题 库内置了若干主题，通过传递对应的字符串选择不同主题；也可以传递Object自行定制主题（不推荐）
-     * @type {Object|String}
+     * 额外样式
+     * @type {CSSStyleSheet|null}
      */
     @property({ attribute: false })
-    accessor theme = 'common'
+    accessor sheet = null
+
+    @state()
+    accessor _isTouchDevice = true
 
     static styles = css`
       :host {
-        display: block; /* 自定义元素默认是inline，统一成block */
+        display: inline-flex; /* 自定义元素默认是inline，统一成inline-flex */
       }
     `
+
+    _emit(name, data, conf = {}) {
+      this.dispatchEvent(
+        new CustomEvent(name, {
+          detail: data,
+          composed: true, // 是否可以穿过Shadow DOM和常规DOM之间的边界进行冒泡
+          bubbles: true, // 是否冒泡
+        })
+      )
+    }
+
+    connectedCallback() {
+      super.connectedCallback()
+      console.log('conn', [this.renderRoot])
+      this._isTouchDevice = 'ontouchstart' in document.documentElement
+    }
+
+    firstUpdated() {
+      if (this.sheet) {
+        adoptStyles(this.renderRoot, [...this.renderRoot.adoptedStyleSheets, this.sheet])
+      }
+    }
   }
 
 export const Base = BaseMixin(LitElement)
