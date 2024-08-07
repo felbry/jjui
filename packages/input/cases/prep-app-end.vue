@@ -4,7 +4,7 @@
     @on-input="(evt) => (val = evt.detail[0])"
     @on-change="(evt) => (val = evt.detail[0])"
   >
-    <span slot="prefix">$</span>
+    <span slot="prepend">$</span>
   </jj-input>
   <jj-input
     class="mt-3"
@@ -12,7 +12,7 @@
     @on-input="(evt) => (val = evt.detail[0])"
     @on-change="(evt) => (val = evt.detail[0])"
   >
-    <span slot="suffix">$</span>
+    <span slot="append">$</span>
   </jj-input>
 </template>
 <script setup>

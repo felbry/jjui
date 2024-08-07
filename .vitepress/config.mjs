@@ -6,7 +6,7 @@ import { transformerVariantGroup, transformerDirectives } from 'unocss'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'jjui',
-  description: '大一统组件库',
+  description: '组件库',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [{ text: '主页', link: '/' }],
@@ -83,13 +83,24 @@ export default defineConfig({
           ],
           // 边框先简单粗暴配置一下，后续优化
           [
-            /^border-(.*)/,
-            ([, c]) => {
-              if (/transparent/.test(c)) {
-                return { 'border-color': 'transparent' }
+            /^border(-[trbl]{1})?-(.*)/,
+            ([, c, d]) => {
+              // c是 trbl前缀
+              // d是 值
+              let direction = ''
+              if (c) {
+                direction = {
+                  '-l': '-left',
+                  '-r': '-right',
+                  '-t': '-top',
+                  '-b': '-bottom',
+                }[c]
               }
-              if (/primary|error|outline/.test(c)) {
-                return { 'border-color': `rgb(var(--jjui-color-${c}))` }
+              if (/transparent/.test(d)) {
+                return { [`border${direction}-color`]: 'transparent' }
+              }
+              if (/primary|error|outline/.test(d)) {
+                return { [`border${direction}-color`]: `rgb(var(--jjui-color-${d}))` }
               }
             },
           ],

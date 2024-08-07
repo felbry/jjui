@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: 'jjui'
-  text: '大一统UI库'
+  text: 'UI库'
   tagline: My great project tagline
   actions:
     - theme: brand

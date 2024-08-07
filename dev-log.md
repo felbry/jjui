@@ -2,7 +2,7 @@
 
 ## Web component 的坑
 
-slot 内容并不能继承其父级样式，比如 input 有一个 suffix 插槽，插槽内容的文本还不能继承 input 的，还需要显式的::slotted() 来声明
+~slot 内容并不能继承其父级样式，比如 input 有一个 suffix 插槽，插槽内容的文本还不能继承 input 的，还需要显式的::slotted() 来声明～
 
 shadow-dom mode, lit, support @apply directive
 
@@ -21,6 +21,19 @@ PC hover 态很好理解，但是移动端有这个状态吗？比如一个 div 
 在 chrome 环境， div > input + icon 的测试中，给 div 加 hover 态，hover 就展示 icon，不 hover 就不展示。
 
 在移动端，只要 input focus 了，始终能触发 hover 态，icon 也能正常展示。（这种好像符合上述第三种情况），不同浏览器可能表现不一，这在后期可能是个兼容性问题。
+
+### slot 动态渲染问题
+
+如何实现
+
+<div v-if="hasXxxSlot"><slot name="xxx"></slot></div> ？
+
+一个组件的结构是
+tag(this)
+-- shadowRoot
+-- slots...
+
+在组件 connected 时，通过 this.querySelectorAll('[slot]')查找所有具备 slot 属性的元素，即可知道外界传入了哪些 slot 元素。
 
 ### CSSStyleSheet
 

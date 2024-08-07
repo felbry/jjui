@@ -131,9 +131,9 @@ export function themeFromSourceColor(
     },
     customColors: customColors.map((c) => customColor(source, c, variant, contrastLevel)),
   }
-  theme.schemes.__proto__.toJSON = function () {
-    return this
-  }
+  // theme.schemes.__proto__.toJSON = function () {
+  //   return this
+  // }
   return theme
 }
 /**
@@ -160,8 +160,8 @@ export function applyTheme(theme, argbSource, options) {
   const scheme = isDark ? theme.schemes.dark : theme.schemes.light
   const schemaStyle = document.createElement('style')
   schemaStyle.id = `jjui-schema-${argbSource}`
-  schemaStyle.textContent = `:root {
-    ${Object.entries(scheme.toJSON())
+  schemaStyle.textContent = `* {
+    ${Object.entries(scheme)
       .map(([key, value]) => {
         const token = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
         return `--jjui-color-${token}: ${m3utils.redFromArgb(value)}, ${m3utils.greenFromArgb(

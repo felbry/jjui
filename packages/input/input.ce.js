@@ -1,10 +1,10 @@
 import { Base } from '../../mixins/base'
 import { html, css, nothing } from 'lit'
 import { customElement, property, state, queryAssignedElements } from 'lit/decorators.js'
-import { classMap } from 'lit/directives/class-map.js'
 import XIcon from '@tabler/icons/outline/x.svg?raw'
 import EyeIcon from '@tabler/icons/outline/eye.svg?raw'
 import EyeOffIcon from '@tabler/icons/outline/eye-off.svg?raw'
+import { SlotsController } from '../../controllers/slots'
 
 /**
  * @fires on-input - [value]
@@ -12,6 +12,8 @@ import EyeOffIcon from '@tabler/icons/outline/eye-off.svg?raw'
  *
  * @slot prefix
  * @slot suffix
+ * @slot prepend
+ * @slot append
  */
 @customElement('jj-input')
 export class JJInput extends Base {
@@ -52,9 +54,6 @@ export class JJInput extends Base {
   @property({ type: Boolean, attribute: false })
   accessor isClearable = true
 
-  @queryAssignedElements({ slot: 'prefix' })
-  accessor _prefixSlot
-
   /**
    * 是否聚焦中
    */
@@ -66,6 +65,8 @@ export class JJInput extends Base {
    */
   @state()
   accessor _isShowTextWhenPwdType = false
+
+  _slotsController = new SlotsController(this)
 
   static styles = [
     Base.styles,
@@ -82,22 +83,36 @@ export class JJInput extends Base {
   ]
 
   render() {
-    return html`<style>
-        ::slotted(*) {
-          @apply text-base;
-        }
-      </style>
+    return html`<div
+      class="wrapper flex-1 flex text-(sm on-surface) ${this._isFocusing
+        ? 'wrapper--focusing'
+        : ''} ${this.isDisabled ? 'wrapper--disabled' : ''}"
+    >
+      ${this._slotsController.value.includes('prepend')
+        ? html`<div
+            class="prepend px-3 flex items-center bg-surface-container border-r-(px solid outline-variant) rounded-l-sm ${this
+              ._isFocusing
+              ? '!border-r-none'
+              : ''}"
+          >
+            <slot name="prepend"></slot>
+          </div>`
+        : nothing}
       <div
-        class="wrapper group box-border w-full flex items-center py-1 rounded-sm hover:bg-on-surface/8 text-(sm on-surface) ${this
+        class="group box-border flex-1 flex items-center py-1 rounded-sm hover:bg-on-surface/8 ${this
           ._isFocusing
-          ? 'wrapper--focusing bg-on-surface/10 border-(px solid primary)'
+          ? 'bg-on-surface/10 border-(px solid primary)'
           : 'bg-surface-container border-(px solid transparent)'} ${this.isDisabled
-          ? 'wrapper--disabled cursor-not-allowed !bg-on-surface/12'
-          : ''}"
+          ? 'cursor-not-allowed !bg-on-surface/12'
+          : ''} ${this._slotsController.value.includes('prepend')
+          ? '!rounded-l-none'
+          : ''} ${this._slotsController.value.includes('append') ? '!rounded-r-none' : ''}"
       >
-        <div class="ml-2">
-          <slot name="prefix"></slot>
-        </div>
+        ${this._slotsController.value.includes('prefix')
+          ? html`<div class="ml-2">
+              <slot name="prefix"></slot>
+            </div>`
+          : nothing}
 
         <input
           class="input px-2 py-0 text-sm border-none bg-transparent flex-1 outline-none ${this
@@ -136,6 +151,22 @@ export class JJInput extends Base {
               @click=${() => (this._isShowTextWhenPwdType = !this._isShowTextWhenPwdType)}
             ></jj-icon>`
           : nothing}
-      </div>`
+        ${this._slotsController.value.includes('suffix')
+          ? html`<div class="suffix mr-2">
+              <slot name="suffix"></slot>
+            </div>`
+          : nothing}
+      </div>
+      ${this._slotsController.value.includes('append')
+        ? html`<div
+            class="append px-3 flex items-center bg-surface-container border-l-(px solid outline-variant) rounded-r-sm ${this
+              ._isFocusing
+              ? '!border-l-none'
+              : ''}"
+          >
+            <slot name="append"></slot>
+          </div>`
+        : nothing}
+    </div>`
   }
 }

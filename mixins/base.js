@@ -31,7 +31,6 @@ const BaseMixin = (superClass) =>
 
     connectedCallback() {
       super.connectedCallback()
-      console.log('conn', [this.renderRoot])
       this._isTouchDevice = 'ontouchstart' in document.documentElement
     }
 

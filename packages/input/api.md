@@ -4,15 +4,15 @@
 
 ## Properties
 
-| Property      | Type                  | Default | Description            |
-|---------------|-----------------------|---------|------------------------|
-| `isClearable` | `boolean`             | true    | 是否可一键清除，需搭配on-change使用 |
-| `isDisabled`  | `boolean`             | false   | 是否禁用                   |
-| `isReadonly`  | `boolean`             | false   | 是否只读                   |
-| `placeholder` | `string`              | "请输入"   | 占位符                    |
-| `sheet`       | `CSSStyleSheet\|null` | null    | 额外样式                   |
-| `type`        | `'text'\|'password'`  | "text"  | 类型                     |
-| `value`       | `string`              | ""      | 初始值                    |
+| Property      | Type                  | Default | Description                     |
+|---------------|-----------------------|---------|---------------------------------|
+| `isClearable` | `boolean`             | true    | 是否可一键清除，需搭配on-input和on-change使用 |
+| `isDisabled`  | `boolean`             | false   | 是否禁用                            |
+| `isReadonly`  | `boolean`             | false   | 是否只读                            |
+| `placeholder` | `string`              | "请输入"   | 占位符                             |
+| `sheet`       | `CSSStyleSheet\|null` | null    | 额外样式                            |
+| `type`        | `'text'\|'password'`  | "text"  | 类型                              |
+| `value`       | `string`              | ""      | 初始值                             |
 
 ## Events
 
@@ -20,3 +20,10 @@
 |-------------|-------------|
 | `on-change` | [value]     |
 | `on-input`  | [value]     |
+
+## Slots
+
+| Name     |
+|----------|
+| `prefix` |
+| `suffix` |
