@@ -18,6 +18,19 @@ import { SlotsController } from '../../controllers/slots'
 @customElement('jj-input')
 export class JJInput extends Base {
   /**
+   * 是否显示字数统计
+   */
+  @property({ type: Boolean, attribute: false })
+  accessor isShowWordLimit = false
+
+  /**
+   * 最大长度
+   * @type {number|null}
+   */
+  @property({ attribute: false })
+  accessor maxlength = null
+
+  /**
    * 初始值
    */
   @property({ attribute: false })
@@ -126,6 +139,7 @@ export class JJInput extends Base {
             : this.type}
           placeholder=${this.placeholder}
           .value=${this.value}
+          maxlength=${this.maxlength}
           ?disabled=${this.isDisabled}
           ?readonly=${this.isReadonly}
           @focus=${() => (this._isFocusing = true)}
@@ -142,6 +156,12 @@ export class JJInput extends Base {
               .isClickable=${true}
               @click=${() => this._emit('on-change', [''])}
             ></jj-icon>`}
+        <!-- 字数统计 -->
+        ${this.maxlength && this.isShowWordLimit
+          ? html`<span class="text-xs text-on-surface-variant mr-1">
+              ${this.value.length}/${this.maxlength}
+            </span>`
+          : nothing}
         <!-- 密码眼睛icon -->
         ${this.type === 'password'
           ? html`<jj-icon
@@ -151,12 +171,14 @@ export class JJInput extends Base {
               @click=${() => (this._isShowTextWhenPwdType = !this._isShowTextWhenPwdType)}
             ></jj-icon>`
           : nothing}
+        <!-- suffix slot -->
         ${this._slotsController.value.includes('suffix')
           ? html`<div class="suffix mr-2">
               <slot name="suffix"></slot>
             </div>`
           : nothing}
       </div>
+      <!-- append slot -->
       ${this._slotsController.value.includes('append')
         ? html`<div
             class="append px-3 flex items-center bg-surface-container border-l-(px solid outline-variant) rounded-r-sm ${this

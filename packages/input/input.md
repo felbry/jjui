@@ -4,6 +4,7 @@ import Status from './cases/status.vue'
 import Password from './cases/password.vue'
 import PreSufFix from './cases/pre-suf-fix.vue'
 import PrepAppEnd from './cases/prep-app-end.vue'
+import Length from './cases/length.vue'
 </script>
 
 # Input 输入框
@@ -48,6 +49,14 @@ import PrepAppEnd from './cases/prep-app-end.vue'
 
 ::: details 展开代码
 <<< ./cases/prep-app-end.vue
+:::
+
+### 长度限制和字数统计
+
+<Length />
+
+::: details 展开代码
+<<< ./cases/length.vue
 :::
 
 ## 后续内容为自动生成
