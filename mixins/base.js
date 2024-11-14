@@ -5,10 +5,10 @@ const BaseMixin = (superClass) =>
   class extends superClass {
     /**
      * 额外样式
-     * @type {CSSStyleSheet|null}
+     * @type {String[]}
      */
     @property({ attribute: false })
-    accessor sheet = null
+    accessor injectStyles = []
 
     @state()
     accessor _isTouchDevice = true
@@ -23,8 +23,7 @@ const BaseMixin = (superClass) =>
       this.dispatchEvent(
         new CustomEvent(name, {
           detail: data,
-          composed: true, // 是否可以穿过Shadow DOM和常规DOM之间的边界进行冒泡
-          bubbles: true, // 是否冒泡
+          composed: false, // 是否可以穿过Shadow DOM和常规DOM之间的边界进行冒泡，false即最多传递到标签根（可以在标签上监听事件），而不是向更上层传递，更符合组件特有事件的特性。
         })
       )
     }
@@ -35,8 +34,11 @@ const BaseMixin = (superClass) =>
     }
 
     firstUpdated() {
-      if (this.sheet) {
-        adoptStyles(this.renderRoot, [...this.renderRoot.adoptedStyleSheets, this.sheet])
+      if (this.injectStyles.length) {
+        adoptStyles(this.renderRoot, [
+          ...this.renderRoot.adoptedStyleSheets,
+          ...injectStyles.map((style) => unsafeCSS(style)),
+        ])
       }
     }
   }

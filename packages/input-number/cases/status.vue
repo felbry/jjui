@@ -1,0 +1,22 @@
+<template>
+  <jj-input
+    isDisabled
+    placeholder="我是禁用状态的placeholder颜色"
+  ></jj-input>
+  <jj-input
+    isDisabled
+    value="我是禁用状态的value颜色"
+    class="mt-3"
+  ></jj-input>
+  <div class="my-3">当处于只读状态时，如果不想显示“请输入”，可以显式设置placeholder为空</div>
+  <jj-input
+    isReadonly
+    placeholder=""
+  ></jj-input>
+  <jj-input
+    isReadonly
+    placeholder=""
+    value="我是只读状态的value"
+    class="mt-3"
+  ></jj-input>
+</template>

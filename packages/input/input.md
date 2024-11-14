@@ -1,62 +1,61 @@
-<script setup>
-import Simple from './cases/simple.vue'
-import Status from './cases/status.vue'
-import Password from './cases/password.vue'
-import PreSufFix from './cases/pre-suf-fix.vue'
-import PrepAppEnd from './cases/prep-app-end.vue'
-import Length from './cases/length.vue'
-</script>
-
 # Input 输入框
 
 ## 示例
 
 ### 基础
 
-<Simple />
+::: demo
 
-::: details 展开代码
-<<< ./cases/simple.vue
+input/simple
+
 :::
 
 ### 禁用/只读状态
 
-<Status />
+::: demo
 
-::: details 展开代码
-<<< ./cases/status.vue
+input/status
+
 :::
 
 ### 密码
 
-<Password />
+::: demo
 
-::: details 展开代码
-<<< ./cases/password.vue
+input/password
+
 :::
 
 ### 前缀/后缀
 
-<PreSufFix />
+::: demo
 
-::: details 展开代码
-<<< ./cases/pre-suf-fix.vue
+input/pre-suf-fix
+
 :::
 
 ### 前置/后置
 
-<PrepAppEnd />
+::: demo
 
-::: details 展开代码
-<<< ./cases/prep-app-end.vue
+input/prep-app-end
+
 :::
 
 ### 长度限制和字数统计
 
-<Length />
+::: demo
 
-::: details 展开代码
-<<< ./cases/length.vue
+input/length
+
+:::
+
+### 方法
+
+::: demo
+
+input/methods
+
 :::
 
 ## 后续内容为自动生成

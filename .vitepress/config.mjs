@@ -2,6 +2,9 @@ import { defineConfig } from 'vitepress'
 import babel from 'vite-plugin-babel'
 import UnoCSS from 'unocss/vite'
 import { transformerVariantGroup, transformerDirectives } from 'unocss'
+import mdContainer from 'markdown-it-container'
+import createDemoContainer from './plugins/markdown/demo.js'
+import appendDemoImportsToMd from './plugins/vite/append-imports-to-markdown.js'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -11,11 +14,13 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [{ text: '主页', link: '/' }],
     sidebar: [
+      { text: '样式覆盖', link: '/override-style' },
       {
         text: '表单组件',
         items: [
           { text: '设计思路', link: '/form-design' },
           { text: 'Input 输入框', link: '/input' },
+          { text: 'Input Number 数字输入框', link: '/input-number' },
         ],
       },
     ],
@@ -34,8 +39,12 @@ export default defineConfig({
       },
     },
   },
+  markdown: {
+    config: (md) => md.use(mdContainer, 'demo', createDemoContainer(md)),
+  },
   vite: {
     plugins: [
+      appendDemoImportsToMd(),
       // Babel will try to pick up Babel config files (.babelrc or .babelrc.json)
       babel(),
       UnoCSS(),
