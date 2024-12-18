@@ -4,7 +4,6 @@ import UnoCSS from 'unocss/vite'
 import { transformerVariantGroup, transformerDirectives } from 'unocss'
 import mdContainer from 'markdown-it-container'
 import createDemoContainer from './plugins/markdown/demo.js'
-import appendDemoImportsToMd from './plugins/vite/append-imports-to-markdown.js'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -44,7 +43,6 @@ export default defineConfig({
   },
   vite: {
     plugins: [
-      appendDemoImportsToMd(),
       // Babel will try to pick up Babel config files (.babelrc or .babelrc.json)
       babel(),
       UnoCSS(),

@@ -44,41 +44,71 @@ const onPlaygroundClick = () => {
 
 <template>
   <div class="example">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <rect
+        width="20"
+        height="14"
+        x="2"
+        y="3"
+        rx="2"
+      ></rect>
+      <line
+        x1="8"
+        x2="16"
+        y1="21"
+        y2="21"
+      ></line>
+      <line
+        x1="12"
+        x2="12"
+        y1="17"
+        y2="21"
+      ></line>
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <rect
+        width="14"
+        height="20"
+        x="5"
+        y="2"
+        rx="2"
+        ry="2"
+      ></rect>
+      <path d="M12 18h.01"></path>
+    </svg>
     <div class="example-showcase">
-      <slot name="source" />
+      <!-- <slot name="source" /> -->
+      <iframe
+        :src="`./example?is=exp-${path.replace(/\//, '-')}`"
+        frameborder="0"
+        class="w-full h-200px"
+      ></iframe>
     </div>
     <hr style="margin: 0" />
     <div
       class="op-btns"
       v-if="!isHiddenOps"
     >
-      <div
-        tooltip="编辑器中编辑"
-        position="bottom"
-        @click="onPlaygroundClick"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon"
-        >
-          <path
-            stroke="none"
-            d="M0 0h24v24H0z"
-            fill="none"
-          />
-          <path d="M9 3l6 0" />
-          <path d="M10 9l4 0" />
-          <path d="M10 3v6l-4 11a.7 .7 0 0 0 .5 1h11a.7 .7 0 0 0 .5 -1l-4 -11v-6" />
-        </svg>
-      </div>
       <div
         :tooltip="isCopied ? '复制成功' : '复制代码'"
         position="bottom"
@@ -156,6 +186,33 @@ const onPlaygroundClick = () => {
           <path d="M7 8l-4 4l4 4" />
           <path d="M17 8l4 4l-4 4" />
           <path d="M14 4l-4 16" />
+        </svg>
+      </div>
+      <div
+        tooltip="编辑器中编辑(暂未完善)"
+        position="bottom"
+        @click="onPlaygroundClick"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon"
+        >
+          <path
+            stroke="none"
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path d="M9 3l6 0" />
+          <path d="M10 9l4 0" />
+          <path d="M10 3v6l-4 11a.7 .7 0 0 0 .5 1h11a.7 .7 0 0 0 .5 -1l-4 -11v-6" />
         </svg>
       </div>
     </div>
@@ -241,14 +298,14 @@ const onPlaygroundClick = () => {
   padding: 0.5rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 12px;
   height: 2.5rem;
   color: var(--vp-c-text-2);
 }
 
 .icon:hover {
-  color: var(--vp-c-text-1);
+  color: var(--vp-c-brand-1);
   stroke-width: 2;
   cursor: pointer;
 }
