@@ -10,7 +10,6 @@ if (!import.meta.env.SSR) {
 import.meta.glob('../../packages/**/*.ce.js', { eager: true })
 // 注册全部Example（按需加载）
 const examples = import.meta.glob('../../examples/*/*.vue')
-console.log('examples', examples)
 
 export default {
   extends: DefaultTheme,

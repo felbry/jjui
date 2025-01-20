@@ -43,60 +43,72 @@ const onPlaygroundClick = () => {
 </script>
 
 <template>
-  <div class="example">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <rect
-        width="20"
-        height="14"
-        x="2"
-        y="3"
-        rx="2"
-      ></rect>
-      <line
-        x1="8"
-        x2="16"
-        y1="21"
-        y2="21"
-      ></line>
-      <line
-        x1="12"
-        x2="12"
-        y1="17"
-        y2="21"
-      ></line>
-    </svg>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <rect
-        width="14"
-        height="20"
-        x="5"
-        y="2"
-        rx="2"
-        ry="2"
-      ></rect>
-      <path d="M12 18h.01"></path>
-    </svg>
-    <div class="example-showcase">
+  <div class="example pt-4 px-4">
+    <div class="flex justify-between items-center">
+      <div>1</div>
+      <div class="flex items-center gap-3">
+        <div
+          class="px-2 py-1 rounded-md cursor-pointer bg-[var(--vp-c-neutral)] text-[--vp-c-neutral-inverse]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect
+              width="14"
+              height="20"
+              x="5"
+              y="2"
+              rx="2"
+              ry="2"
+            ></rect>
+            <path d="M12 18h.01"></path>
+          </svg>
+        </div>
+        <div class="px-2 py-1 border-([var(--vp-c-border)] px solid) rounded-md cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect
+              width="20"
+              height="14"
+              x="2"
+              y="3"
+              rx="2"
+            ></rect>
+            <line
+              x1="8"
+              x2="16"
+              y1="21"
+              y2="21"
+            ></line>
+            <line
+              x1="12"
+              x2="12"
+              y1="17"
+              y2="21"
+            ></line>
+          </svg>
+        </div>
+      </div>
+      <div>2</div>
+    </div>
+    <div class="mt-4 p-4 outline-(2px [var(--vp-c-text-1)] dashed)">
       <!-- <slot name="source" /> -->
       <iframe
         :src="`./example?is=exp-${path.replace(/\//, '-')}`"
@@ -286,12 +298,6 @@ const onPlaygroundClick = () => {
 .example-float-control span {
   font-size: 14px;
   margin-left: 10px;
-}
-
-.example-showcase {
-  padding: 1.5rem;
-  margin: 0.5px;
-  background-color: var(--vp-c-bg);
 }
 
 .op-btns {
