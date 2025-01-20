@@ -1,0 +1,1 @@
+import{p as n,o,c as a,j as s,F as r}from"./framework.DrcEz2BI.js";const p={__name:"methods",setup(u){const e=n();return(c,t)=>(o(),a(r,null,[s("jj-input",{ref_key:"input",ref:e},null,512),s("button",{class:"mt-2",onClick:t[0]||(t[0]=()=>e.value.focus())}," 调用focus ")],64))}};export{p as default};

@@ -1,1 +1,0 @@
-import{p as n,c as o,j as s,F as a,o as r}from"./framework.MmrAPlzZ.js";const p={__name:"methods",setup(u){const e=n();return(c,t)=>(r(),o(a,null,[s("jj-input",{ref_key:"input",ref:e},null,512),s("button",{class:"mt-2",onClick:t[0]||(t[0]=()=>e.value.focus())}," 调用focus ")],64))}};export{p as default};
