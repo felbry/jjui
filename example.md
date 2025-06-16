@@ -12,3 +12,9 @@ onMounted(() => {
 </script>
 
 <component v-if="is" :is="is" />
+
+<style>
+jj-demo-block-setting::part(setting-icon) {
+  display: none;
+}
+</style>

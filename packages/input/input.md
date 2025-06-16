@@ -58,6 +58,6 @@ input/methods
 
 :::
 
-## 后续内容为自动生成
+## -----
 
 <!--@include: ./api.md{2,}-->

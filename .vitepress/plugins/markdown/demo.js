@@ -18,14 +18,17 @@ export default function createDemoContainer(md) {
           source = fs.readFileSync(path.resolve('examples', `${sourceFile}.vue`), 'utf-8')
         }
         if (!source) throw new Error(`Incorrect source file: ${sourceFile}`)
-        return `<Demo source="${encodeURIComponent(
-          md.render(`\`\`\` vue\n${source}\`\`\``)
-        )}" path="${sourceFile}" raw-source="${encodeURIComponent(source)}"${
-          otherProps ? ` ${otherProps}` : ''
-        }>
-      <template #source><exp-${sourceFile.replaceAll('/', '-')}/></template>`
+        const compTagName = `exp-${sourceFile.replaceAll('/', '-')}`
+        const sourceHtml = md
+          .render(`\`\`\` vue\n${source}\`\`\``)
+          .replace(/^<div /, '<div slot="source" style="margin: 0" ')
+        return `<jj-demo-block rawSource="${encodeURIComponent(
+          source
+        )}" iframeUrl="/example?is=${compTagName}" ${otherProps ? `${otherProps}` : ''}>
+          ${sourceHtml}
+        <!-- <${compTagName} /> -->`
       } else {
-        return '</Demo>\n'
+        return '</jj-demo-block>\n'
       }
     },
   }
