@@ -24,7 +24,7 @@ export default function createDemoContainer(md) {
           .replace(/^<div /, '<div slot="source" style="margin: 0" ')
         return `<jj-demo-block rawSource="${encodeURIComponent(
           source
-        )}" iframeUrl="/example?is=${compTagName}" ${otherProps ? `${otherProps}` : ''}>
+        )}" iframeUrl="./example?is=${compTagName}" ${otherProps ? `${otherProps}` : ''}>
           ${sourceHtml}
         <!-- <${compTagName} /> -->`
       } else {
