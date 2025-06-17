@@ -1,0 +1,1 @@
+import{p as a,o,c as s}from"./framework.Ba5s4TxA.js";const l=["value"],d={__name:"password",setup(p){const t=a("");return(r,e)=>(o(),s("jj-input",{value:t.value,type:"password",onOnInput:e[0]||(e[0]=n=>t.value=n.detail[0]),onOnChange:e[1]||(e[1]=n=>t.value=n.detail[0])},null,40,l))}};export{d as default};
