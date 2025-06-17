@@ -1,0 +1,1 @@
+import{_ as a,c as t,o as r,ah as i}from"./chunks/framework.DczEEnM6.js";const m=JSON.parse('{"title":"设计思路","description":"","frontmatter":{},"headers":[],"relativePath":"form-design.md","filePath":"form-design.md"}'),n={name:"form-design.md"};function o(p,e,s,d,c,l){return r(),t("div",null,e[0]||(e[0]=[i("",8)]))}const f=a(n,[["render",o]]);export{m as __pageData,f as default};

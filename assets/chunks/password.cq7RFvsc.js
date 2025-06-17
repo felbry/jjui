@@ -1,0 +1,1 @@
+import{x as a,c as o,o as s}from"./framework.DczEEnM6.js";const l=["value"],d={__name:"password",setup(r){const t=a("");return(u,e)=>(s(),o("jj-input",{value:t.value,type:"password",onOnInput:e[0]||(e[0]=n=>t.value=n.detail[0]),onOnChange:e[1]||(e[1]=n=>t.value=n.detail[0])},null,40,l))}};export{d as default};
