@@ -1,7 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 import { defineAsyncComponent, h } from 'vue'
 import 'virtual:uno.css'
-import 'jj-demo-block'
 // 注册全部Web Component
 import.meta.glob('../../packages/**/*.ce.js', { eager: true })
 // 注册全部Example（按需加载）
@@ -12,7 +11,10 @@ export default {
   Layout() {
     return h('jj-demo-block-setting', null, [h(DefaultTheme.Layout)])
   },
-  enhanceApp: ({ app }) => {
+  enhanceApp: async ({ app }) => {
+    if (!import.meta.env.SSR) {
+      import('jj-demo-block')
+    }
     Object.entries(examples).forEach(([path, importFunc]) => {
       app.component(
         'exp-' +
