@@ -9,7 +9,9 @@ const examples = import.meta.glob('../../examples/**/*.vue')
 export default {
   extends: DefaultTheme,
   Layout() {
-    return h('jj-demo-block-setting', null, [h(DefaultTheme.Layout)])
+    return import.meta.env.SSR
+      ? h('div', 'loading...')
+      : h('jj-demo-block-setting', null, [h(DefaultTheme.Layout)])
   },
   enhanceApp: async ({ app }) => {
     if (!import.meta.env.SSR) {

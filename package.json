@@ -5,7 +5,7 @@
   "scripts": {
     "docs:dev": "vitepress dev --host",
     "docs:build": "vitepress build --base /jjui/",
-    "docs:preview": "vitepress preview",
+    "docs:preview": "vitepress preview --base /jjui/",
     "api:build": "npx wca \"packages/**/*.ce.js\" --outFiles {dir}/api.md",
     "comp:build": "vite build"
   },
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.24.7",
     "@tabler/icons": "^3.11.0",
-    "jj-demo-block": "^0.1.5",
+    "jj-demo-block": "^0.1.6",
     "lit": "^3.1.3",
     "markdown-it-container": "^4.0.0",
     "unocss": "^0.61.5",
